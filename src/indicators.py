@@ -12,7 +12,7 @@ def add_moving_averages(df, windows=None):
         windows = [20, 50]
     df = df.copy()
     for w in windows:
-        df[f"SMA-{w}"] = df["Close"].rolling(window=w).mean()
+        df[f"SMA_{w}"] = df["Close"].rolling(window=w).mean()
     return df
 
 def add_rsi(df, period=14):
@@ -39,7 +39,7 @@ def add_bollinger_bands(df, window=20, num_std=2):
     sma = df["Close"].rolling(window=window).mean()
     std = df["Close"].rolling(window=window).std()
     df["BB_Upper"] = sma + (std * num_std)
-    df["BB_Middle"] = sma 
+    df["BB_Middle"] = sma
     df["BB_Lower"] = sma - (std * num_std)
     return df
 
